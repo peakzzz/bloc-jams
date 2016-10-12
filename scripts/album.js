@@ -30,6 +30,23 @@
      ]
  };
 
+ // Third Example Album
+ var albumLinkinPark = {
+     title: 'Meteora',
+     artist: 'Linkin Park',
+     label: 'LP',
+     year: '2003',
+     albumArtUrl: 'assets/images/album_covers/03.png',
+     songs: [
+         { title: 'Foreword', duration: '0:13' },
+         { title: 'Dont Say', duration: '3:08' },
+         { title: 'Somewhere I belong', duration: '3:34'},
+         { title: 'Numb', duration: '3:08' },
+         { title: 'Faint', duration: '2:42'}
+     ]
+ };
+
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -42,13 +59,15 @@ var createSongRow = function(songNumber, songName, songLength) {
      return template;
  };
 
-var setCurrentAlbum = function(album) {
-     // #1
+// #1
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+var setCurrentAlbum = function(album) {
+     
  
      // #2
      albumTitle.firstChild.nodeValue = album.title;
@@ -67,4 +86,15 @@ var setCurrentAlbum = function(album) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var albums =[albumPicasso, albumMarconi, albumLinkinPark];
+     var i =1;
+     albumImage.addEventListener('click', function(){
+         setCurrentAlbum(albums[i]);
+         i++;
+         
+         if(i==albums.length){
+             i=0;
+         }
+     });
  };
